@@ -1,0 +1,6 @@
+-- Projeto
+
+npm install global @nestjs/cli
+nest new arsenicumapi
+
+npm install --save @nestjs/swagger swagger-ui-express
