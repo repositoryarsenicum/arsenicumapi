@@ -1,7 +1,8 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { Column, Entity, OneToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn } from "typeorm";
 import { IsNumber, IsString } from "class-validator";
 import { PessoaModel } from "../model/pessoa.model";
+import { PerfilModel } from "./perfil.model";
 
 @Entity("TB_USUARIO")
 export class UsuarioModel {
@@ -12,7 +13,7 @@ export class UsuarioModel {
 
     @ApiProperty()
     @IsString()
-    @Column({ name: "IDENTIFICADOR", type: "varchar", length: "30", nullable: false })
+    @Column({ name: "IDENTIFICADOR", type: "varchar", length: "85", nullable: false })
     public identificador?: string;
 
     @ApiProperty()
@@ -22,5 +23,9 @@ export class UsuarioModel {
 
     @OneToOne(() => PessoaModel, (pessoaModel) => pessoaModel.usuarioModel)
     public pessoaModel: PessoaModel;
+
+    @OneToOne(() => PerfilModel)
+    @JoinColumn({name: "ID_PERFIL"})
+    public perfilModel: PerfilModel;
     
 }

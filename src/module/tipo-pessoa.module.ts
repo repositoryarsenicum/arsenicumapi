@@ -8,5 +8,6 @@ import { TipoPessoaModel } from "../model/tipo-pessoa.model";
   imports: [TypeOrmModule.forFeature(([TipoPessoaModel]))],
   controllers: [TipoPessoaController],
   providers: [TipoPessoaService],
+  exports: [TipoPessoaService]
 })
 export class TipoPessoaModule {}

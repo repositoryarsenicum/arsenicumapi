@@ -1,4 +1,4 @@
-import { Injectable } from "@nestjs/common";
+import { Injectable, NotFoundException } from "@nestjs/common";
 import { TipoPessoaModel } from "../model/tipo-pessoa.model";
 import { InjectRepository } from "@nestjs/typeorm";
 import { Repository } from "typeorm";
@@ -16,6 +16,14 @@ export class TipoPessoaService {
 
     public findAll() : Promise<TipoPessoaModel[]> {
         return this.tipoPessoaRepository.find();
+    }
+
+    public findOne(codigoParameter: number) : Promise<TipoPessoaModel> {
+        const tipoPessoaCadastrada = this.tipoPessoaRepository.findOne( codigoParameter );
+        if(!tipoPessoaCadastrada) {
+            throw new NotFoundException("Tipo de Pessoa não Encontrada!");
+        }
+        return tipoPessoaCadastrada;
     }
 
 }
