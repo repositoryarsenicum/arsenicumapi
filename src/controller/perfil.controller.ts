@@ -1,6 +1,5 @@
 import { Body, Controller, Get, Post } from "@nestjs/common";
 import { ApiBody } from "@nestjs/swagger";
-import { PessoaModel } from "../model/pessoa.model";
 import { PerfilService } from "../service/perfil.service";
 import { PerfilModel } from "../model/perfil.model";
 
@@ -18,7 +17,7 @@ export class PerfilController {
     }
 
     @Get()
-    public async findAll() : Promise<PessoaModel[]> {
+    public async findAll() : Promise<PerfilModel[]> {
         return await this.perfilService.findAll();
     }
 

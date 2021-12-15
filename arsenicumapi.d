@@ -29,3 +29,6 @@
 
     -- Envio de E-mail
     https://sendgrid.com
+
+    -- Documentação
+    localhost:3000/api/

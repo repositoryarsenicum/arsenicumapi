@@ -12,7 +12,7 @@ export class PessoaController {
 
     @Post()
     @ApiBody({ type: PessoaModel })
-    public async save(@Body() pessoaModelParameter: PessoaModel) : Promise<PessoaModel> {
+    public async save(@Body() pessoaModelParameter: any) : Promise<PessoaModel> {
         return await this.pessoaService.save(pessoaModelParameter);
     }
 

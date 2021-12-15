@@ -1,6 +1,7 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn } from "typeorm";
 import { IsBoolean, IsNumber, IsString } from "class-validator";
+import { UsuarioModel } from "../model/usuario.model";
 
 @Entity("TB_PESSOA")
 export class PessoaModel {
@@ -11,12 +12,16 @@ export class PessoaModel {
 
     @ApiProperty()
     @IsString()
-    @Column({ type: "varchar", length: "85", unique: true, nullable: false })
+    @Column({ name: "NOME", type: "varchar", length: "85", unique: true, nullable: false })
     public nome?: string;
 
     @ApiProperty()
     @IsBoolean()
-    @Column({ default: true })
+    @Column({ name: "IS_ATIVO", default: true })
     public isAtivo?: boolean;
+
+    @OneToOne(() => UsuarioModel)
+    @JoinColumn({ name: "ID_USUARIO" })
+    public usuarioModel: UsuarioModel;
     
 }
