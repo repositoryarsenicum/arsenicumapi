@@ -17,3 +17,4 @@
     npm install @nestjs/mapped-types
     npm install typeorm @nestjs/typeorm
     npm install pg
+    npm install --save @nestjs/swagger swagger-ui-express
