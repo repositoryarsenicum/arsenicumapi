@@ -24,7 +24,7 @@ export class PessoaModel {
     @JoinColumn({ name: "ID_USUARIO" })
     public usuarioModel: UsuarioModel;
 
-    @OneToOne(() => TipoPessoaModel)
+    @OneToOne(() => TipoPessoaModel, { cascade: true, eager: true })
     @JoinColumn({ name: "ID_TIPO_PESSOA" })
     public tipoPessoaModel: TipoPessoaModel;
     

@@ -43,7 +43,6 @@ export class PessoaService {
     public async criarPessoaFisica(pessoaModelParameter: PessoaModel) : Promise<PessoaModel> {
         try {
             pessoaModelParameter.tipoPessoaModel = await this.tipoPessoaService.findOne(1);
-            console.log(pessoaModelParameter);
             return await this.pessoaRepository.save(pessoaModelParameter);
         } catch (errorResponse) {
             throw new Error(errorResponse);
@@ -61,9 +60,8 @@ export class PessoaService {
         }
     }
 
-    // TODO -- Recuperar apenas pessoas ativas no sistema
     public findAll() : Promise<PessoaModel[]> {
-        return this.pessoaRepository.find({ relations: ["usuarioModel", "tipoPessoaModel", "usuarioModel.perfilModel"]});
+        return this.pessoaRepository.find({ where: { isAtivo: true }, relations: ["usuarioModel", "tipoPessoaModel", "usuarioModel.perfilModel"]});
     }
 
 }

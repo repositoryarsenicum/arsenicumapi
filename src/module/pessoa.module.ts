@@ -6,10 +6,11 @@ import { PessoaModel } from "../model/pessoa.model";
 import { UsuarioModule } from "./usuario.module";
 import { TipoPessoaModule } from "./tipo-pessoa.module";
 import { PerfilModule } from "./perfil.module";
+import { TipoPessoaModel } from "../model/tipo-pessoa.model";
 
 @Module({
   imports: [
-    TypeOrmModule.forFeature(([PessoaModel])),
+    TypeOrmModule.forFeature(([PessoaModel, TipoPessoaModel])),
     UsuarioModule,
     TipoPessoaModule,
     PerfilModule],
