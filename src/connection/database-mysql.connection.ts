@@ -3,14 +3,14 @@ import { TypeOrmModule } from "@nestjs/typeorm";
 
 @Module({
   imports: [TypeOrmModule.forRoot({
-    type: "postgres",
+    type: "mysql",
     host: "localhost",
-    port: 5432,
-    username: "postgres",
-    password: "postgres",
+    port: 3306,
+    username: "root",
+    password: "arsenicum",
     database: "db_arsenicum",
     autoLoadEntities: true,
     synchronize: true
   })]
 })
-export class DatabaseConnection { }
+export class DatabaseMySQLConnection { }

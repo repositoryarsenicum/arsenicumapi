@@ -43,7 +43,8 @@ export class PessoaService {
     public async criarPessoaFisica(pessoaModelParameter: PessoaModel) : Promise<PessoaModel> {
         try {
             pessoaModelParameter.tipoPessoaModel = await this.tipoPessoaService.findOne(1);
-            return await this.pessoaRepository.create(pessoaModelParameter);
+            console.log(pessoaModelParameter);
+            return await this.pessoaRepository.save(pessoaModelParameter);
         } catch (errorResponse) {
             throw new Error(errorResponse);
             throw new Error("Não foi possível cadastrar a pessoa informada!");

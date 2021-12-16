@@ -13,7 +13,7 @@ export class PessoaModel {
 
     @ApiProperty()
     @IsString()
-    @Column({ name: "NOME", type: "varchar", length: "85", unique: false, nullable: false })
+    @Column({ name: "NOME", type: "varchar", length: "85", nullable: false })
     public nome?: string;
 
     @IsBoolean()

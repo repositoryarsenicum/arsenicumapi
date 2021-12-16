@@ -27,6 +27,18 @@
 
     npm install bcrypt --save
 
+    -- Instalar apos erro: "https://github.com/typeorm/typeorm/issues/4122"
+    npm install mysql
+
+    -- Instalar MySQL
+    brew install mysql
+    sudo chown $USER /usr/local/bin/brew
+    mysql.server start
+
+    mysql -u root -p
+    ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'arsenicum';
+    FLUSH PRIVILEGES;
+
 # Links
 
     -- Envio de E-mail
