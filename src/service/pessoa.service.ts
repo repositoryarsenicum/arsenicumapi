@@ -21,12 +21,11 @@ export class PessoaService {
     ) {}
 
     public async save(pessoaModelParameter: any) : Promise<PessoaModel> {
-        const perfilRequest = await this.perfilService.findOne(pessoaModelParameter.usuarioModel.perfilModel.codigo);
         if(pessoaModelParameter.usuarioModel.identificador && pessoaModelParameter.usuarioModel.chave) {
             const usuarioRequest = new UsuarioModel();
                 usuarioRequest.identificador = pessoaModelParameter.usuarioModel.identificador;
                 usuarioRequest.chave = bcrypt.hashSync(pessoaModelParameter.usuarioModel.chave, 10);
-                usuarioRequest.perfilModel = perfilRequest;
+                usuarioRequest.perfilModel = await this.perfilService.findOne(pessoaModelParameter.usuarioModel.perfilModel.codigo);
             const usuarioCadastrado = await this.usuarioService.save(usuarioRequest);
             const tipoPessoaRequest = await this.tipoPessoaService.findOne(pessoaModelParameter.tipoPessoaModel.codigo);
             const pessoaRequest = new PessoaModel();
@@ -35,8 +34,28 @@ export class PessoaService {
                 pessoaRequest.usuarioModel = usuarioCadastrado;
                 pessoaRequest.tipoPessoaModel = tipoPessoaRequest;
             this.logger.log(`Os dados da pessoa [${pessoaModelParameter.nome}] foram cadastrados com sucesso!`);
-            return await this.pessoaRepository.save(pessoaRequest);
+            return await this.pessoaRepository.create(pessoaRequest);
         } else {
+            throw new Error("Não foi possível cadastrar a pessoa informada!");
+        }
+    }
+
+    public async criarPessoaFisica(pessoaModelParameter: PessoaModel) : Promise<PessoaModel> {
+        try {
+            pessoaModelParameter.tipoPessoaModel = await this.tipoPessoaService.findOne(1);
+            return await this.pessoaRepository.create(pessoaModelParameter);
+        } catch (errorResponse) {
+            throw new Error(errorResponse);
+            throw new Error("Não foi possível cadastrar a pessoa informada!");
+        }
+    }
+
+    public async criarPessoaJuridica(pessoaModelParameter: PessoaModel) : Promise<PessoaModel> {
+        try {
+            pessoaModelParameter.tipoPessoaModel = await this.tipoPessoaService.findOne(2);
+            return await this.pessoaRepository.create(pessoaModelParameter);
+        } catch (errorResponse) {
+            throw new Error(errorResponse);
             throw new Error("Não foi possível cadastrar a pessoa informada!");
         }
     }

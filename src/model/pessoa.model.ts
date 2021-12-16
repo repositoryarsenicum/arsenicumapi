@@ -13,10 +13,9 @@ export class PessoaModel {
 
     @ApiProperty()
     @IsString()
-    @Column({ name: "NOME", type: "varchar", length: "85", unique: true, nullable: false })
+    @Column({ name: "NOME", type: "varchar", length: "85", unique: false, nullable: false })
     public nome?: string;
 
-    @ApiProperty()
     @IsBoolean()
     @Column({ name: "IS_ATIVO", default: true })
     public isAtivo?: boolean;

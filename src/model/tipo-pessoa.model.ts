@@ -12,12 +12,12 @@ export class TipoPessoaModel {
 
     @ApiProperty()
     @IsString()
-    @Column({ type: "varchar", length: "85", unique: true, nullable: false })
+    @Column({ type: "varchar", length: "85", unique: false, nullable: false })
     public descricao?: string;
 
     @ApiProperty()
     @IsString()
-    @Column({ type: "char", length: "2", unique: true, nullable: false })
+    @Column({ type: "char", length: "2", unique: false, nullable: false })
     public sigla?: string;
 
     @OneToOne(() => PessoaModel, (pessoaModel: PessoaModel) => pessoaModel.tipoPessoaModel)
