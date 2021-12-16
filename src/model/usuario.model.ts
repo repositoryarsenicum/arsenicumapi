@@ -18,7 +18,7 @@ export class UsuarioModel {
 
     @ApiProperty()
     @IsString()
-    @Column({ name: "CHAVE", type: "varchar", length: "20", nullable: false })
+    @Column({ name: "CHAVE", type: "varchar", nullable: false })
     public chave?: string;
 
     @OneToOne(() => PessoaModel, (pessoaModel) => pessoaModel.usuarioModel)

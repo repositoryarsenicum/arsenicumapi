@@ -5,9 +5,14 @@ import { PessoaService } from "../service/pessoa.service";
 import { PessoaModel } from "../model/pessoa.model";
 import { UsuarioModule } from "./usuario.module";
 import { TipoPessoaModule } from "./tipo-pessoa.module";
+import { PerfilModule } from "./perfil.module";
 
 @Module({
-  imports: [TypeOrmModule.forFeature(([PessoaModel])), UsuarioModule, TipoPessoaModule],
+  imports: [
+    TypeOrmModule.forFeature(([PessoaModel])),
+    UsuarioModule,
+    TipoPessoaModule,
+    PerfilModule],
   controllers: [PessoaController],
   providers: [PessoaService],
   exports: [PessoaService]

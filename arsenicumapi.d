@@ -25,6 +25,8 @@
     -- Usar arquivo ENV
     npm i --save @nestjs/config
 
+    npm install bcrypt --save
+
 # Links
 
     -- Envio de E-mail

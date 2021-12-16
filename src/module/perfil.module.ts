@@ -8,5 +8,6 @@ import { PerfilService } from "../service/perfil.service";
   imports: [TypeOrmModule.forFeature(([PerfilModel]))],
   controllers: [PerfilController],
   providers: [PerfilService],
+  exports: [PerfilService]
 })
 export class PerfilModule {}

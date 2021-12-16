@@ -1,4 +1,4 @@
-import { Injectable, Logger } from "@nestjs/common";
+import { Injectable, Logger, NotFoundException } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { Repository } from "typeorm";
 import { PerfilModel } from "../model/perfil.model";
@@ -19,6 +19,14 @@ export class PerfilService {
 
     public findAll() : Promise<PerfilModel[]> {
         return this.perfilRepository.find();
+    }
+
+    public findOne(codigoParameter: number) : Promise<PerfilModel> {
+        const perfilCadastrado = this.perfilRepository.findOne( codigoParameter );
+        if(!perfilCadastrado) {
+            throw new NotFoundException("Perfil não Encontrado!");
+        }
+        return perfilCadastrado;
     }
 
 }
