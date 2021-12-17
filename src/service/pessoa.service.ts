@@ -53,7 +53,7 @@ export class PessoaService {
     public async criarPessoaJuridica(pessoaModelParameter: PessoaModel) : Promise<PessoaModel> {
         try {
             pessoaModelParameter.tipoPessoaModel = await this.tipoPessoaService.findOne(2);
-            return await this.pessoaRepository.create(pessoaModelParameter);
+            return await this.pessoaRepository.save(pessoaModelParameter);
         } catch (errorResponse) {
             throw new Error(errorResponse);
             throw new Error("Não foi possível cadastrar a pessoa informada!");
@@ -62,6 +62,14 @@ export class PessoaService {
 
     public findAll() : Promise<PessoaModel[]> {
         return this.pessoaRepository.find({ where: { isAtivo: true }, relations: ["usuarioModel", "tipoPessoaModel", "usuarioModel.perfilModel"]});
+    }
+
+    public recuperarDadosPessoaFisica() : Promise<PessoaModel[]> {
+        return this.pessoaRepository.find({ where: { tipoPessoaModel: 1, isAtivo: true }, relations: ["tipoPessoaModel"]});
+    }
+
+    public recuperarDadosPessoaJuridica() : Promise<PessoaModel[]> {
+        return this.pessoaRepository.find({ where: { tipoPessoaModel: 2,  isAtivo: true }, relations: ["tipoPessoaModel"]});
     }
 
 }

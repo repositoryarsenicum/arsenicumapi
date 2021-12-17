@@ -33,4 +33,14 @@ export class PessoaController {
         return await this.pessoaService.findAll();
     }
 
+    @Get("fisica")
+    public async recuperarDadosPessoaFisica() : Promise<PessoaModel[]> {
+        return await this.pessoaService.recuperarDadosPessoaFisica();
+    }
+
+    @Get("juridica")
+    public async recuperarDadosPessoaJuridica() : Promise<PessoaModel[]> {
+        return await this.pessoaService.recuperarDadosPessoaJuridica();
+    }
+
 }
