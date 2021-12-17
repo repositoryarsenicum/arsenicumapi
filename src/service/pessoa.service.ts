@@ -7,6 +7,7 @@ import { UsuarioModel } from "../model/usuario.model";
 import { TipoPessoaService } from "./tipo-pessoa.service";
 import { PerfilService } from "./perfil.service";
 import * as bcrypt from "bcrypt";
+import { from, Observable } from "rxjs";
 
 @Injectable()
 export class PessoaService {
@@ -70,6 +71,12 @@ export class PessoaService {
 
     public recuperarDadosPessoaJuridica() : Promise<PessoaModel[]> {
         return this.pessoaRepository.find({ where: { tipoPessoaModel: 2,  isAtivo: true }, relations: ["tipoPessoaModel"]});
+    }
+
+    public recuperarDadosPessoaJuridicaPaginada(take = 10, skip = 0) : Observable<PessoaModel[]> {
+        return from(this.pessoaRepository.findAndCount({take, skip}).then(([pessoaModelList]) => {
+            return <PessoaModel[]>pessoaModelList;
+        }),);
     }
 
 }

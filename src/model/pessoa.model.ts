@@ -17,11 +17,11 @@ export class PessoaModel {
     public nome?: string;
 
     @IsDate()
-    @Column({ type: "timestamp", default: () => 'CURRENT_TIMESTAMP' })
+    @Column({ name: "DATA_CADASTRO", type: "timestamp", default: () => 'CURRENT_TIMESTAMP' })
     public dataCadastro?: Date;
 
     @IsDate()
-    @Column({ type: "timestamp", default: () => 'CURRENT_TIMESTAMP' })
+    @Column({ name: "DATA_ATUALIZACAO", type: "timestamp", default: () => 'CURRENT_TIMESTAMP' })
     public dataAtualizacao?: Date;
 
     @ApiProperty()
