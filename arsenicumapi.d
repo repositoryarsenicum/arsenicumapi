@@ -39,6 +39,17 @@
     ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'arsenicum';
     FLUSH PRIVILEGES;
 
+    -- Migrations
+
+        -- Gerar nova build
+        npm run build
+
+        -- Criar
+        npx typeorm migration:create -n CriarTabelaTipoPessoa
+
+        -- Executar
+        npx typeorm migration:run
+
 # Links
 
     -- Envio de E-mail
