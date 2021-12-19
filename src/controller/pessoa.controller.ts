@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post, Query } from "@nestjs/common";
+import { Body, Controller, Delete, Get, Param, Post, Query } from "@nestjs/common";
 import { ApiBody } from "@nestjs/swagger";
 import { PessoaService } from "../service/pessoa.service";
 import { PessoaModel } from "../model/pessoa.model";
@@ -47,6 +47,11 @@ export class PessoaController {
     @Get("juridica/pagination")
     public recuperarDadosPessoaJuridicaPaginada(@Query("take") take: number = 1, @Query("skip") skip: number = 1) : Observable<PessoaModel[]> {
         return this.pessoaService.recuperarDadosPessoaJuridicaPaginada(take, skip);
+    }
+
+    @Delete(":codigoPessoa")
+    public excluirPessoa(@Param("codigoPessoa") codigoPessoa: number) {
+        return this.pessoaService.excluirPessoa(codigoPessoa);
     }
 
 }

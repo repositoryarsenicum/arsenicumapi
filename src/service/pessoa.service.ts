@@ -1,4 +1,4 @@
-import { Injectable, Logger } from "@nestjs/common";
+import { Injectable, Logger, NotFoundException } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { Repository } from "typeorm";
 import { PessoaModel } from "../model/pessoa.model";
@@ -62,7 +62,7 @@ export class PessoaService {
     }
 
     public findAll() : Promise<PessoaModel[]> {
-        return this.pessoaRepository.find({ where: { isAtivo: true }, relations: ["usuarioModel", "tipoPessoaModel", "usuarioModel.perfilModel"]});
+        return this.pessoaRepository.find({ where: { isAtivo: true }});
     }
 
     public recuperarDadosPessoaFisica() : Promise<PessoaModel[]> {
@@ -76,7 +76,15 @@ export class PessoaService {
     public recuperarDadosPessoaJuridicaPaginada(take = 10, skip = 0) : Observable<PessoaModel[]> {
         return from(this.pessoaRepository.findAndCount({take, skip}).then(([pessoaModelList]) => {
             return <PessoaModel[]>pessoaModelList;
-        }),);
+        }));
+    }
+
+    public async excluirPessoa(codigoPessoa: number) {
+        const pessoaModel = await this.pessoaRepository.findOne(codigoPessoa);
+        if(!pessoaModel) {
+            throw new NotFoundException("Pessoa Não Encontrada na Base de Dados!");
+        }
+        return await this.pessoaRepository.remove(pessoaModel);
     }
 
 }
