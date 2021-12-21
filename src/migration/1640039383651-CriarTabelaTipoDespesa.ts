@@ -8,12 +8,12 @@ export class CriarTabelaTipoDespesa1640039383651 implements MigrationInterface {
             columns: [
                 {
                     name: "CODIGO",
-                    type: "int",
+                    type: "INT",
                     isPrimary: true
                 },
                 {
                     name: "DESCRICAO",
-                    type: "varchar"
+                    type: "VARCHAR(85)"
                 }
             ]
         }));
