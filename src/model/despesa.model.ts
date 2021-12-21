@@ -17,19 +17,16 @@ export class DespesaModel {
     @Column( { name: "DATA_VENCIMENTO", type: "date", nullable: true })
     public dataVencimento?: Date;
 
-    @ApiProperty()
     @IsDate()
     @Column( { name: "DATA_CADASTRO", type: "date", nullable: false })
     public dataCadastro?: Date;
 
-    @ApiProperty()
     @IsDate()
     @Column( { name: "DATA_ATUALIZACAO", type: "date", nullable: true })
     public dataAtualizacao?: Date;
 
-    @ApiProperty()
     @IsString()
-    @Column({ name: "USUARIO_ATUALIZACAO", type: "varchar", length: "85", nullable: true })
+    @Column({ name: "USUARIO_ATUALIZACAO", type: "varchar", length: "85", nullable: false })
     public usuarioAtualizacao?: String;
 
     @ApiProperty()
@@ -37,21 +34,23 @@ export class DespesaModel {
     @Column({ name: "VALOR_DESPESA", type: "decimal", precision: 10, scale: 2, default: 0.0, nullable: true })
     public valorDespesa?: number;
 
-    @ApiProperty()
     @IsBoolean()
-    @Column({ name: "IS_PAGO", type: "boolean", nullable: false })
+    @Column({ name: "IS_PAGO", type: "boolean", default: true, nullable: false })
     public isPago?: Boolean;
 
+    @ApiProperty()
     @OneToOne(() => TipoDespesaModel, { cascade: true, eager: true })
     @JoinColumn({ name: "ID_TIPO_DESPESA" })
     public tipoDespesaModel: TipoDespesaModel;
 
+    @ApiProperty()
     @OneToOne(() => SituacaoPagamentoModel, { cascade: true, eager: true })
     @JoinColumn({ name: "ID_SITUACAO_PAGAMENTO" })
     public situacaoPagamentoModel: SituacaoPagamentoModel;
 
+    @ApiProperty()
     @OneToOne(() => PessoaModel, { cascade: true, eager: true })
-    @JoinColumn({ name: "ID_PESSOA" })
-    public pessoaModel: PessoaModel;
+    @JoinColumn({ name: "ID_PESSOA_FAVORECIDO" })
+    public pessoaFavorecidoModel: PessoaModel;
     
 }

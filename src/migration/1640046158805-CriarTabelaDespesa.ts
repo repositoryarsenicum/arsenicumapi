@@ -20,7 +20,7 @@ export class CriarTabelaDespesa1640046158805 implements MigrationInterface {
                     type: "INT",
                 },
                 {
-                    name: "ID_PESSOA",
+                    name: "ID_PESSOA_FAVORECIDO",
                     type: "INT"
                 },
                 {
