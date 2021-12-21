@@ -1,5 +1,5 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { Column, Double, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Double, Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn } from "typeorm";
 import { IsBoolean, IsDate, IsNumber, IsString } from "class-validator";
 import { TipoDespesaModel } from "./tipo-despesa.model";
 import { SituacaoPagamentoModel } from "./situacao-pagamento.model";
@@ -42,10 +42,16 @@ export class DespesaModel {
     @Column({ name: "IS_PAGO", type: "boolean", nullable: false })
     public isPago?: Boolean;
 
+    @OneToOne(() => TipoDespesaModel, { cascade: true, eager: true })
+    @JoinColumn({ name: "ID_TIPO_DESPESA" })
     public tipoDespesaModel: TipoDespesaModel;
 
+    @OneToOne(() => SituacaoPagamentoModel, { cascade: true, eager: true })
+    @JoinColumn({ name: "ID_SITUACAO_PAGAMENTO" })
     public situacaoPagamentoModel: SituacaoPagamentoModel;
 
+    @OneToOne(() => PessoaModel, { cascade: true, eager: true })
+    @JoinColumn({ name: "ID_PESSOA" })
     public pessoaModel: PessoaModel;
     
 }
