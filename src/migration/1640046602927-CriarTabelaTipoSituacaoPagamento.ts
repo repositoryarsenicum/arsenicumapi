@@ -8,7 +8,7 @@ export class CriarTabelaTipoSituacaoPagamento1640046602927 implements MigrationI
             columns: [
                 {
                     name: "CODIGO",
-                    type: "INT",
+                    type: "int",
                     isPrimary: true
                 },
                 {

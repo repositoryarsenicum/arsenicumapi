@@ -8,8 +8,9 @@ export class CriarTabelaTipoDespesa1640039383651 implements MigrationInterface {
             columns: [
                 {
                     name: "CODIGO",
-                    type: "INT",
-                    isPrimary: true
+                    type: "int",
+                    isPrimary: true,
+                    isGenerated: true
                 },
                 {
                     name: "DESCRICAO",
