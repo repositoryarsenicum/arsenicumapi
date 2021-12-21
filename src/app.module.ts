@@ -7,6 +7,8 @@ import { PerfilModule } from "./module/perfil.module";
 import { UsuarioModule } from "./module/usuario.module";
 import { DatabaseMySQLConnection } from "./connection/database-mysql.connection";
 import { SituacaoPagamentoModule } from "./module/situacao-pagamento.module";
+import { TipoDespesaModule } from "./module/tipo-despesa.module";
+import { DespesaModule } from "./module/despesa.module";
 
 @Module({
   imports: [
@@ -15,7 +17,9 @@ import { SituacaoPagamentoModule } from "./module/situacao-pagamento.module";
       PessoaModule,
       PerfilModule,
       UsuarioModule,
-      SituacaoPagamentoModule],
+      SituacaoPagamentoModule,
+      TipoDespesaModule,
+      DespesaModule],
   controllers: [AppController],
   providers: [AppService],
 })

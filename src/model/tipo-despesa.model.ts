@@ -1,11 +1,12 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, Generated, PrimaryGeneratedColumn } from "typeorm";
 import { IsNumber, IsString } from "class-validator";
 
 @Entity("TB_TIPO_DESPESA")
 export class TipoDespesaModel {
 
     @PrimaryGeneratedColumn()
+    @Generated("increment")
     @IsNumber()
     public codigo?: number;
 

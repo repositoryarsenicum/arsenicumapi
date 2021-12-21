@@ -57,3 +57,8 @@
 
     -- Documentação
     localhost:3000/api/
+
+# Comandos
+
+    lsof -i tcp:3000
+    kill -9 44475

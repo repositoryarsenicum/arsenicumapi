@@ -1,5 +1,5 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { Column, Double, Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn } from "typeorm";
 import { IsBoolean, IsDate, IsNumber, IsString } from "class-validator";
 import { TipoDespesaModel } from "./tipo-despesa.model";
 import { SituacaoPagamentoModel } from "./situacao-pagamento.model";
@@ -34,8 +34,8 @@ export class DespesaModel {
 
     @ApiProperty()
     @IsNumber()
-    @Column({ name: "VALOR_DESPESA", type: "double", nullable: true })
-    public valorDespesa?: Double;
+    @Column({ name: "VALOR_DESPESA", type: "decimal", precision: 10, scale: 2, default: 0.0, nullable: true })
+    public valorDespesa?: number;
 
     @ApiProperty()
     @IsBoolean()
