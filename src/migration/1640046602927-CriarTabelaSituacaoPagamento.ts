@@ -13,7 +13,7 @@ export class CriarTabelaTipoSituacaoPagamento1640046602927 implements MigrationI
                 },
                 {
                     name: "DESCRICAO",
-                    type: "VARCHAR(85)"
+                    type: "varchar(85)"
                 }
             ]
         }));
